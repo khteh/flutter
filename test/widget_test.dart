@@ -34,18 +34,54 @@ void main() {
   testWidgets('State management tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
+    // Or use skipOffstage: false - expect(find.byType(StatefulParentWidget, skipOffstage: false), findsOneWidget);
     /*
-    expect(
-        ((tester.firstWidget(find.byType(Container)) as Container).decoration
-                as BoxDecoration)
-            .color,
-        Colors.grey);*/
+    final gesture = await tester
+        .startGesture(const Offset(0, 300)); //Position of the scrollview
+    await gesture.moveBy(const Offset(0, -300)); //How much to scroll by
+    await tester.pump();
+    This fails the second part of the test after the `tester.tap` activity
+    */
+    final listFinder = find.byType(Scrollable);
+    final itemFinder = find.byType(TapboxB);
+    // Scroll until the item to be found appears.
+    await tester.scrollUntilVisible(
+      itemFinder,
+      500.0,
+      scrollable: listFinder,
+    );
     expect(find.byType(StatefulParentWidget), findsOneWidget);
-
+    expect(find.byType(TapboxB), findsOneWidget);
     expect(find.text("Inactive"), findsOneWidget);
     expect(find.text("Active"), findsNothing);
-    //StatefulParentWidget statefulParentWidget = const StatefulParentWidget();
-    //tester.state(find.byWidget(statefulParentWidget));
-    //expect(find.byWidget(tapboxB), findsOneWidget);
+    TapboxB tapboxB = tester.firstWidget<TapboxB>(find.byType(TapboxB));
+    assert(!tapboxB.active);
+    Container container = find
+        .descendant(
+            of: find.byType(TapboxB),
+            matching: find.byType(Container),
+            matchRoot: true)
+        .evaluate()
+        .elementAt(0)
+        .widget as Container;
+    expect((container.decoration as BoxDecoration).color, Colors.grey[600]);
+    expect(find.byType(StatefulParentWidget), findsOneWidget);
+    expect(find.byType(TapboxB), findsOneWidget);
+    await tester.tap(find.byType(TapboxB));
+    await tester.pump();
+    expect(find.text("Active"), findsOneWidget);
+    expect(find.text("Inactive"), findsNothing);
+    tapboxB = tester.firstWidget<TapboxB>(find.byType(TapboxB));
+    assert(tapboxB.active);
+    container = find
+        .descendant(
+            of: find.byType(TapboxB),
+            matching: find.byType(Container),
+            matchRoot: true)
+        .evaluate()
+        .elementAt(0)
+        .widget as Container;
+    expect(
+        (container.decoration as BoxDecoration).color, Colors.lightGreen[700]);
   });
 }

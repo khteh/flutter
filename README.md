@@ -1,6 +1,11 @@
 # flutter_app_layout
 
-A new Flutter project.
+A new Flutter project which includes the following features:
+
+- Flutter layout
+- Flutter interactivity
+- State management
+- Tests
 
 ## Getting Started
 
