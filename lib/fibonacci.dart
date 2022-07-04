@@ -68,31 +68,33 @@ class FibonacciFormState extends State<FibonacciForm> {
                         width: 500,
                         child: Text('$_result')))
               ]),
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-                      setState(() {
-                        _result =
-                            fibonacci(int.parse(textEditingController.text));
-                      });
-                    }
-                  },
-                  child: const Center(
-                    child: Text('Submit'),
-                  ),
-                )
-              ])
+          Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          // If the form is valid, display a snackbar. In the real world,
+                          // you'd often call a server or save the information in a database.
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+                          );
+                          setState(() {
+                            _result = fibonacci(
+                                int.parse(textEditingController.text));
+                          });
+                        }
+                      },
+                      child: const Center(
+                        child: Text('Submit'),
+                      ),
+                    )
+                  ]))
         ]));
   }
 }
