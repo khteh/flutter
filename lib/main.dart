@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         padding: const EdgeInsets.all(32),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [FibonacciForm()]));
+            children: const [FibonacciForm(key: ValueKey("FibonacciForm"))]));
     Widget titleSection = Container(
         padding: const EdgeInsets.all(32),
         child: Row(children: [
@@ -48,7 +48,9 @@ class MyApp extends StatelessWidget {
         padding: const EdgeInsets.all(32),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [StatefulParentWidget()]));
+            children: const [
+              StatefulParentWidget(key: ValueKey("StateManagementWidget"))
+            ]));
     Widget textSection = const Padding(
         padding: EdgeInsets.all(32),
         child: Text(

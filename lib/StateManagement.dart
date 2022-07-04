@@ -5,7 +5,7 @@ import 'dart:developer';
 //------------------------ StatefulParentWidget --------------------------------
 
 class StatefulParentWidget extends StatefulWidget {
-  const StatefulParentWidget({super.key});
+  const StatefulParentWidget({Key? key}) : super(key: key);
 
   @override
   _StatefulParentWidgetState createState() => _StatefulParentWidgetState();

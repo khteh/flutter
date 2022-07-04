@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FibonacciForm extends StatefulWidget {
-  const FibonacciForm({super.key});
+  const FibonacciForm({Key? key}) : super(key: key);
   @override
   FibonacciFormState createState() {
     return FibonacciFormState();
@@ -66,10 +66,10 @@ class FibonacciFormState extends State<FibonacciForm> {
                     child: SizedBox(
                         // Placing the Text in a SizedBox and setting its width prevents a discernible “jump” when the text changes between the values of 40 and 41 — a jump would otherwise occur because those values have different widths.
                         width: 500,
-                        child: SizedBox(child: Text('$_result'))))
+                        child: Text('$_result')))
               ]),
           Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

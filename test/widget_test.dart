@@ -15,7 +15,7 @@ void main() {
   testWidgets('Favourites icon and counter tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester
-        .pumpWidget(const MyApp(key: Key("FavouritesIconCounterTests")));
+        .pumpWidget(const MyApp(key: ValueKey("FavouritesIconCounterTests")));
 
     // Verify default favourites counter = 41
     expect(find.text("41"), findsOneWidget);
@@ -35,7 +35,7 @@ void main() {
   });
   testWidgets('State management tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp(key: Key("StateManagemetTests")));
+    await tester.pumpWidget(const MyApp(key: ValueKey("StateManagemetTests")));
     // Or use skipOffstage: false - expect(find.byType(StatefulParentWidget, skipOffstage: false), findsOneWidget);
     /*
     final gesture = await tester
@@ -88,7 +88,7 @@ void main() {
   });
   testWidgets('Fibonacci Form tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp(key: Key("FibonacciFormTests")));
+    await tester.pumpWidget(const MyApp(key: ValueKey("FibonacciFormTests")));
     final listFinder = find.byType(Scrollable);
     final fibonacciForm = find.byType(FibonacciForm);
     // Scroll until the item to be found appears.
