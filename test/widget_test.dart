@@ -44,13 +44,11 @@ void main() {
     await tester.pump();
     This fails the second part of the test after the `tester.tap` activity
     */
-    final listFinder = find.byType(Scrollable);
-    final itemFinder = find.byType(TapboxB);
     // Scroll until the item to be found appears.
     await tester.scrollUntilVisible(
-      itemFinder,
+      find.byType(TapboxB),
       500.0,
-      scrollable: listFinder,
+      scrollable: find.byType(Scrollable),
     );
     expect(find.byType(StatefulParentWidget), findsOneWidget);
     expect(find.byType(TapboxB), findsOneWidget);
@@ -89,13 +87,11 @@ void main() {
   testWidgets('Fibonacci Form tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp(key: ValueKey("FibonacciFormTests")));
-    final listFinder = find.byType(Scrollable);
-    final fibonacciForm = find.byType(FibonacciForm);
     // Scroll until the item to be found appears.
     await tester.scrollUntilVisible(
-      fibonacciForm,
+      find.byType(TapboxB),
       500.0,
-      scrollable: listFinder,
+      scrollable: find.byType(Scrollable),
     );
 
     expect(find.byType(FibonacciForm), findsOneWidget);
