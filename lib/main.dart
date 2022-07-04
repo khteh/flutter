@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './FavouriteWidget.dart';
 import './StateManagement.dart';
+import './fibonacci.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,6 +11,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Widget fibonacciSection = Container(
+        padding: const EdgeInsets.all(32),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [FibonacciForm()]));
     Widget titleSection = Container(
         padding: const EdgeInsets.all(32),
         child: Row(children: [
@@ -38,21 +44,6 @@ class MyApp extends StatelessWidget {
         _buildButtonsColumn(color, Icons.share, "SHARE")
       ],
     );
-    /*
-    Widget statesSection = Row(
-        /*
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-              margin: const EdgeInsets.all(10),
-              child: const StatefulParentWidget())
-        ]
-        */
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [StatefulParentWidget()]);
-        */
     Widget statesSection = Container(
         padding: const EdgeInsets.all(32),
         child: Row(
@@ -86,6 +77,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
             appBar: AppBar(title: const Text("Flutter Layout")),
             body: ListView(children: [
+              fibonacciSection,
               // a ListView supports app body scrolling when the app is run on a small device.
               Image.asset("images/lake.jpg",
                   width: 600,

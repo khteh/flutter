@@ -9,11 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_app_layout/main.dart';
 import 'package:flutter_app_layout/StateManagement.dart';
+import 'package:flutter_app_layout/fibonacci.dart';
 
 void main() {
   testWidgets('Favourites icon and counter tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester
+        .pumpWidget(const MyApp(key: Key("FavouritesIconCounterTests")));
 
     // Verify default favourites counter = 41
     expect(find.text("41"), findsOneWidget);
@@ -33,7 +35,7 @@ void main() {
   });
   testWidgets('State management tests', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const MyApp(key: Key("StateManagemetTests")));
     // Or use skipOffstage: false - expect(find.byType(StatefulParentWidget, skipOffstage: false), findsOneWidget);
     /*
     final gesture = await tester
@@ -83,5 +85,27 @@ void main() {
         .widget as Container;
     expect(
         (container.decoration as BoxDecoration).color, Colors.lightGreen[700]);
+  });
+  testWidgets('Fibonacci Form tests', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp(key: Key("FibonacciFormTests")));
+    final listFinder = find.byType(Scrollable);
+    final fibonacciForm = find.byType(FibonacciForm);
+    // Scroll until the item to be found appears.
+    await tester.scrollUntilVisible(
+      fibonacciForm,
+      500.0,
+      scrollable: listFinder,
+    );
+
+    expect(find.byType(FibonacciForm), findsOneWidget);
+    // Enter 'hi' into the TextField.
+    await tester.enterText(find.byType(TextFormField), 'hi');
+    // Tap the submit button.
+    await tester.tap(find.byType(FloatingActionButton));
+    // Rebuild the widget after the state has changed.
+    await tester.pump();
+    // Expect to find the item on screen.
+    expect(find.text('-1'), findsOneWidget);
   });
 }
