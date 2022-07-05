@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget fibonacciSection = Container(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(10),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [FibonacciForm(key: ValueKey("FibonacciForm"))]));
+            children: const [FibonacciForm()]));
     Widget titleSection = Container(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(10),
         child: Row(children: [
           Expanded(
               child: Column(
@@ -45,14 +45,12 @@ class MyApp extends StatelessWidget {
       ],
     );
     Widget statesSection = Container(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(10),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              StatefulParentWidget(key: ValueKey("StateManagementWidget"))
-            ]));
+            children: const [StatefulParentWidget()]));
     Widget textSection = const Padding(
-        padding: EdgeInsets.all(32),
+        padding: EdgeInsets.all(10),
         child: Text(
           'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
           'Alps. Situated 1,578 meters above sea level, it is one of the '
