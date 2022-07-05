@@ -45,8 +45,8 @@ class FibonacciFormState extends State<FibonacciForm> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         SizedBox(
@@ -67,10 +67,12 @@ class FibonacciFormState extends State<FibonacciForm> {
                                 return null;
                               },
                             )),
-                        SizedBox(
-                            // Placing the Text in a SizedBox and setting its width prevents a discernible “jump” when the text changes between the values of 40 and 41 — a jump would otherwise occur because those values have different widths.
-                            width: 500,
-                            child: Text('fibonacci($_input): $_result'))
+                        Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: SizedBox(
+                                // Placing the Text in a SizedBox and setting its width prevents a discernible “jump” when the text changes between the values of 40 and 41 — a jump would otherwise occur because those values have different widths.
+                                width: 500,
+                                child: Text('fibonacci($_input): $_result')))
                       ]),
                   Padding(
                       padding: const EdgeInsets.only(left: 10),

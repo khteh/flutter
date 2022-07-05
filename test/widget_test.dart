@@ -89,7 +89,7 @@ void main() {
     await tester.pumpWidget(const MyApp(key: ValueKey("FibonacciFormTests")));
     // Scroll until the item to be found appears.
     await tester.scrollUntilVisible(
-      find.byType(TapboxB),
+      find.byType(FibonacciForm),
       500.0,
       scrollable: find.byType(Scrollable),
     );
@@ -102,6 +102,6 @@ void main() {
     // Rebuild the widget after the state has changed.
     await tester.pump();
     // Expect to find the item on screen.
-    expect(find.text('-1'), findsOneWidget);
+    expect(find.text('0'), findsOneWidget);
   });
 }
