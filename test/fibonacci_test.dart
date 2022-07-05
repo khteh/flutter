@@ -54,6 +54,7 @@ void main() {
     await tester.tap(find.byType(ElevatedButton));
     // Rebuild the widget after the state has changed.
     await tester.pump();
+    expect(find.text('fibonacci(0): 0'), findsNothing);
     // Expect to find the item on screen.
     expect(find.text('fibonacci(20): 6765'), findsOneWidget);
   });
