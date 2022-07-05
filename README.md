@@ -5,6 +5,7 @@ A new Flutter project which includes the following features:
 - Flutter layout
 - Flutter interactivity
 - State management
+- Fibonacci widget
 - Tests
 
 ## Getting Started
