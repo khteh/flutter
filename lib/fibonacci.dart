@@ -18,7 +18,7 @@ class FibonacciFormState extends State<FibonacciForm> {
   // Note: This is a `GlobalKey<FormState>`,
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
-  int _result = -1;
+  int _result = 0, _input = 0;
 // Create a text controller and use it to retrieve the current value
   // of the TextField.
   final textEditingController = TextEditingController();
@@ -37,64 +37,67 @@ class FibonacciFormState extends State<FibonacciForm> {
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                    width: 500,
-                    child: TextFormField(
-                      controller: textEditingController,
-                      decoration:
-                          const InputDecoration(labelText: "Enter your number"),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a number';
-                        }
-                        return null;
-                      },
-                    )),
-                Container(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: SizedBox(
-                        // Placing the Text in a SizedBox and setting its width prevents a discernible “jump” when the text changes between the values of 40 and 41 — a jump would otherwise occur because those values have different widths.
-                        width: 500,
-                        child: Text('$_result')))
-              ]),
-          Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ElevatedButton(
-                      onPressed: () {
-                        // Validate returns true if the form is valid, or false otherwise.
-                        if (_formKey.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
-                          setState(() {
-                            _result = fibonacci(
-                                int.parse(textEditingController.text));
-                          });
-                        }
-                      },
-                      child: const Center(
-                        child: Text('Submit'),
-                      ),
-                    )
-                  ]))
-        ]));
+        child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(
+                            width: 500,
+                            child: TextFormField(
+                              controller: textEditingController,
+                              decoration: const InputDecoration(
+                                  labelText: "Enter your number"),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              // The validator receives the text that the user has entered.
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter a number';
+                                }
+                                return null;
+                              },
+                            )),
+                        SizedBox(
+                            // Placing the Text in a SizedBox and setting its width prevents a discernible “jump” when the text changes between the values of 40 and 41 — a jump would otherwise occur because those values have different widths.
+                            width: 500,
+                            child: Text('fibonacci($_input): $_result'))
+                      ]),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ElevatedButton(
+                                onPressed: () {
+                                  // Validate returns true if the form is valid, or false otherwise.
+                                  if (_formKey.currentState!.validate()) {
+                                    // If the form is valid, display a snackbar. In the real world,
+                                    // you'd often call a server or save the information in a database.
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text('Processing Data')),
+                                    );
+                                    setState(() {
+                                      _input =
+                                          int.parse(textEditingController.text);
+                                      _result = fibonacci(_input);
+                                    });
+                                  }
+                                },
+                                child: const Text('Submit'))
+                          ]))
+                ])));
   }
 }

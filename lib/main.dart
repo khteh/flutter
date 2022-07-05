@@ -78,9 +78,9 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
             appBar: AppBar(title: const Text("Flutter Layout")),
-            body: ListView(children: [
+            body: // a ListView supports app body scrolling when the app is run on a small device.
+                ListView(children: [
               fibonacciSection,
-              // a ListView supports app body scrolling when the app is run on a small device.
               Image.asset("images/lake.jpg",
                   width: 600,
                   height: 240,
