@@ -8,6 +8,10 @@ A new Flutter project which includes the following features:
 - Fibonacci widget
 - Tests
 
+## Visual Studio Code
+
+Install `dart` and `flutter` extensions
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
