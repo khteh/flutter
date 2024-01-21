@@ -8,9 +8,36 @@ A new Flutter project which includes the following features:
 - Fibonacci widget
 - Tests
 
+## Environment Setup
+
+### Install Java
+
+- Check version and installation path:
+
+```
+$ update-alternatives --config java
+$ update-alternatives --config javac
+```
+
+### Install Android Studio
+
+- Install Android Studio: https://developer.android.com/studio
+- Run `ln -s jbr jre` inside Android Studio installed root folder
+
+### Flutter Environment
+
+- `flutter clean`
+- `flutter upgrade`
+- `flutter doctor`
+
+### Check and Upgrade outdated installed packages
+
+- `flutter pub outdated`
+- `flutter pub upgrade`
+
 ## Visual Studio Code
 
-Install `dart` and `flutter` extensions
+- Install `dart` and `flutter` extensions.
 
 ## Getting Started
 
