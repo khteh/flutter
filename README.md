@@ -39,6 +39,11 @@ $ update-alternatives --config javac
 
 - Install `dart` and `flutter` extensions.
 
+### Run
+
+- `F5` from VSCode
+- `flutter run` from project root
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
