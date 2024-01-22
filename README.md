@@ -35,14 +35,22 @@ $ update-alternatives --config javac
 - `flutter pub outdated`
 - `flutter pub upgrade`
 
+## Generate gRPC services and models
+
+- `protoc proto/ping.proto --dart_out=grpc:lib/grpc`
+
 ## Visual Studio Code
 
 - Install `dart` and `flutter` extensions.
 
-### Run
+## Tests
+
+- `flutter test`
+
+## Run
 
 - `F5` from VSCode
-- `flutter run` from project root
+- `flutter run`
 
 ## Getting Started
 
