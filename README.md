@@ -13,11 +13,10 @@ A new Flutter project which includes the following features:
 ### Install Java
 
 - Check version and installation path:
-
-```
-$ update-alternatives --config java
-$ update-alternatives --config javac
-```
+  ```
+  $ update-alternatives --config java
+  $ update-alternatives --config javac
+  ```
 
 ### Install Android Studio
 
